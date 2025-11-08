@@ -28,4 +28,3 @@ Built with:
 - **Backend**: Node.js, Express, Socket.io
 - **Real-time**: WebSocket connections for instant synchronization
 
-# Flam-Frontend-Project
