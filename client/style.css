@@ -1,0 +1,397 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #333;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* Join modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  min-width: 350px;
+}
+
+.modal-content h2 {
+  margin-bottom: 24px;
+  color: #667eea;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal-content button:hover {
+  background: #5568d3;
+}
+
+/* App layout */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  background: white;
+  padding: 16px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+header h1 {
+  font-size: 24px;
+  color: #667eea;
+}
+
+#room-info {
+  font-size: 14px;
+  color: #666;
+}
+
+#room-info span {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Toolbar */
+#toolbar {
+  background: white;
+  padding: 12px 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  z-index: 100;
+}
+
+.tool-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tool-section label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+}
+
+.tool-btn {
+  padding: 8px 12px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-btn:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.tool-btn.active {
+  border-color: #667eea;
+  background: #667eea;
+  color: white;
+}
+
+#color-picker {
+  width: 60px;
+  height: 36px;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#width-slider {
+  width: 120px;
+}
+
+#width-value {
+  font-weight: 600;
+  color: #667eea;
+  min-width: 30px;
+  text-align: right;
+}
+
+button {
+  padding: 8px 16px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s;
+}
+
+button:hover {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#clear-btn {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+#clear-btn:hover {
+  background: #fff0f0;
+  border-color: #ff5252;
+}
+
+#performance-metrics {
+  margin-left: auto;
+  font-size: 12px;
+  color: #999;
+  gap: 16px;
+}
+
+#performance-metrics span {
+  font-family: 'Courier New', monospace;
+}
+
+/* Canvas */
+#canvas-container {
+  flex: 1;
+  position: relative;
+  margin: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+#main-canvas,
+#cursor-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: crosshair;
+}
+
+#cursor-canvas {
+  pointer-events: none;  /* let clicks pass through to main canvas */
+  z-index: 10;
+}
+
+/* Users panel */
+#users-panel {
+  position: fixed;
+  right: 0;
+  top: 120px;
+  bottom: 0;
+  width: 250px;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+#users-panel h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #667eea;
+}
+
+#users-list {
+  list-style: none;
+}
+
+#users-list li {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  background: #f8f9fa;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.3s;
+}
+
+#users-list li:hover {
+  background: #e9ecef;
+}
+
+.user-color {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.user-name {
+  font-weight: 500;
+  flex: 1;
+}
+
+.user-status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4caf50;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Remote cursors */
+.remote-cursor {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1000;
+  transition: transform 0.05s linear;
+}
+
+.cursor-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cursor-label {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #users-panel {
+    width: 200px;
+  }
+
+  #toolbar {
+    gap: 12px;
+    padding: 8px 12px;
+  }
+
+  .tool-section {
+    gap: 4px;
+  }
+
+  #performance-metrics {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 18px;
+  }
+
+  #users-panel {
+    display: none;
+  }
+
+  #canvas-container {
+    margin: 8px;
+  }
+}
+
+/* Loading spinner (not used yet but keeping for future) */
+.loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  color: white;
+  z-index: 2000;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
